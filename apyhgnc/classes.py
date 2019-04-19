@@ -71,6 +71,8 @@ class Info(Server):
         super().__init__(self._url)
         self._searchable = None
         self._stored = None
+        self._modified = None
+        self._numdoc = None
 
     @property
     def response(self) -> Dict[str, Any]:
@@ -100,6 +102,18 @@ class Info(Server):
         if self._stored is None:
             self._stored = self.response.get("storedFields", "")
         return self._stored
+
+    @property
+    def lastModified(self):
+        if self._modified is None:
+            self._modified = self.response.get("lastModified", "")
+        return self._modified
+
+    @property
+    def numDoc(self):
+        if self._numdoc is None:
+            self._numdoc = self.response.get("numDoc", 0)
+        return self._numdoc
 
     def __repr__(self) -> str:
         return "HGNC Info results"
@@ -138,7 +152,6 @@ class Search(Server):
             self._url += "+AND+".join(q)
         super().__init__(self._url)
 
-    @property
     def frame(self) -> pd.DataFrame:
         """
         Return a pandas dataframe with the retrieved results.
@@ -146,19 +159,18 @@ class Search(Server):
         """
         return pd.DataFrame.from_records(self.response.get("docs"))
 
-    @property
     def trans(self) -> pd.DataFrame:
         """
         Return a simpler view of the dataframe by calling its transpose.
         :return: pd.DataFrame
         """
-        return self.frame.T
+        return self.frame().T
 
     def __getitem__(self, item):
-        return self.frame.get(item, "{} not found".format(item))
+        return self.frame().get(item, "{} not found".format(item))
 
     def __getattr__(self, item):
-        return self.frame.get(item, "{} not found".format(item))
+        return self.frame().get(item, "{} not found".format(item))
 
     def __len__(self) -> int:
         return self.response.get("numFound", 0)
@@ -183,7 +195,6 @@ class Fetch(Server):
         self._url += "{}/{}".format(field, term)
         super().__init__(self._url)
 
-    @property
     def frame(self) -> pd.DataFrame:
         """
         Return a pandas dataframe with the retrieved results.
@@ -191,19 +202,18 @@ class Fetch(Server):
         """
         return pd.DataFrame.from_records(self.response.get("docs"))
 
-    @property
     def trans(self) -> pd.DataFrame:
         """
         Return a simpler view of the dataframe by calling its transpose.
         :return: pd.DataFrame
         """
-        return self.frame.T
+        return self.frame().T
 
     def __getitem__(self, item):
-        return self.frame.get(item, "{} not found".format(item))
+        return self.frame().get(item, "{} not found".format(item))
 
     def __getattr__(self, item):
-        return self.frame.get(item, "{} not found".format(item))
+        return self.frame().get(item, "{} not found".format(item))
 
     def __len__(self) -> int:
         return self.response.get("numFound", 0)

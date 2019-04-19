@@ -72,7 +72,7 @@ class TestFetch:
              "uuid": "2dc6516a-a605-4dce-b4ff-759a7287c680",
              "_version_": 1631126555665104900}
         ])
-        result = self.f.frame
+        result = self.f.frame()
 
         assert_frame_equal(result, expect)
 
@@ -102,7 +102,7 @@ class TestFetch:
              "uuid": "2dc6516a-a605-4dce-b4ff-759a7287c680",
              "_version_": 1631126555665104900}
         ]).transpose()
-        result = self.f.trans
+        result = self.f.trans()
 
         assert_frame_equal(result, expect)
 

@@ -38,7 +38,7 @@ class TestSearchAll:
             "score": [10.320703, 4.528981, 4.528981, 1.290088],
             "symbol": ["BRAF", "BANCR", "BRAFP1", "AKAP9"]
         })
-        result = self.s.frame
+        result = self.s.frame()
 
         assert_frame_equal(result, expect)
 
@@ -48,7 +48,7 @@ class TestSearchAll:
             "score": [10.320703, 4.528981, 4.528981, 1.290088],
             "symbol": ["BRAF", "BANCR", "BRAFP1", "AKAP9"]
         }).transpose()
-        result = self.s.trans
+        result = self.s.trans()
 
         assert_frame_equal(result, expect)
 
@@ -103,7 +103,7 @@ class TestSearchSymbol:
             "score": [10.972663],
             "symbol": ["BRAF"]
         })
-        result = self.s.frame
+        result = self.s.frame()
 
         assert_frame_equal(result, expect)
 
@@ -113,7 +113,7 @@ class TestSearchSymbol:
             "score": [10.972663],
             "symbol": ["BRAF"]
         }).transpose()
-        result = self.s.trans
+        result = self.s.trans()
 
         assert_frame_equal(result, expect)
 
@@ -166,7 +166,7 @@ class TestSearchKeyword:
             "score": [10.972663],
             "symbol": ["BRAF"]
         })
-        result = self.s.frame
+        result = self.s.frame()
 
         assert_frame_equal(result, expect)
 
@@ -176,7 +176,7 @@ class TestSearchKeyword:
             "score": [10.972663],
             "symbol": ["BRAF"]
         }).transpose()
-        result = self.s.trans
+        result = self.s.trans()
 
         assert_frame_equal(result, expect)
 
@@ -231,7 +231,7 @@ class TestSearchKeywordOR:
             "score": [5.1589246, 0.12897311],
             "symbol": ["ZNF3", "BRAF"]
         })
-        result = self.s.frame
+        result = self.s.frame()
 
         assert_frame_equal(result, expect)
 
@@ -241,7 +241,7 @@ class TestSearchKeywordOR:
             "score": [5.1589246, 0.12897311],
             "symbol": ["ZNF3", "BRAF"]
         }).transpose()
-        result = self.s.trans
+        result = self.s.trans()
 
         assert_frame_equal(result, expect)
 
@@ -294,7 +294,7 @@ class TestSearchKeywords:
             "score": [11.020766],
             "symbol": ["BRAF"]
         })
-        result = self.s.frame
+        result = self.s.frame()
 
         assert_frame_equal(result, expect)
 
@@ -304,7 +304,7 @@ class TestSearchKeywords:
             "score": [11.020766],
             "symbol": ["BRAF"]
         }).transpose()
-        result = self.s.trans
+        result = self.s.trans()
 
         assert_frame_equal(result, expect)
 
