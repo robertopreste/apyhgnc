@@ -16,6 +16,10 @@ apyhgnc
 .. image:: https://circleci.com/gh/robertopreste/apyhgnc.svg?style=svg
         :target: https://circleci.com/gh/robertopreste/apyhgnc
 
+.. image:: https://app.codeship.com/projects/c832f1e0-44fe-0137-a826-5a0258e749b3/status?branch=master
+        :target: https://app.codeship.com/projects/337097
+        :alt: Codeship Status for robertopreste/apyhgnc
+
 .. image:: https://codecov.io/gh/robertopreste/apyhgnc/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/robertopreste/apyhgnc
 
