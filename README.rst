@@ -50,7 +50,22 @@ Async pythonic interface to HGNC.
 Features
 --------
 
-* TODO
+This Python package allows to retrieve entries from HGNC_ using synchronous calls.
+
+* Return searchable fields and stored fields separately using the ``Info`` class.
+* Return all entries of interest limiting results only to hgnc_id, symbol and score fields using the ``Search`` class.
+* Return entries according to the given searchable fields, returning all the available stored fields using the ``Fetch`` class.
+
+Please refer to the Usage_ section of the documentation for further information.
+
+Installation
+------------
+
+**apyhgnc only supports Python 3**, and can be installed using pip::
+
+    pip install apyhgnc
+
+Please refer to the Installation_ section of the documentation for further information.
 
 Credits
 -------
@@ -59,3 +74,6 @@ This package was created with Cookiecutter_ and the `cc-pypackage`_ project temp
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`cc-pypackage`: https://github.com/robertopreste/cc-pypackage
+.. _HGNC: https://www.genenames.org
+.. _Usage: https://apyhgnc.readthedocs.io/en/latest/usage.html
+.. _Installation: https://apyhgnc.readthedocs.io/en/latest/installation.html

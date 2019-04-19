@@ -2,6 +2,7 @@
 Installation
 ============
 
+**PLEASE NOTE: apyhgnc only supports Python 3!**
 
 Stable release
 --------------
