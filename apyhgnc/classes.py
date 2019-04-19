@@ -125,9 +125,9 @@ class Search(Server):
 
     >>> Search("BRAF")  # search all searchable fields
     >>> Search("symbol", "BRAF")  # restrict search to symbol field
-    >>> Search(symbol="BRAF")  # search with a keywork argument
+    >>> Search(symbol="BRAF")  # search with a keyword argument
     >>> Search(symbol=["BRAF", "ZNF"])  # search with OR
-    >>> Search(symbol="BRAF", status="Approved")  # search with multiple keywords
+    >>> Search(symbol="BRAF", status="Approved")  # search multiple keywords
     """
 
     def __init__(self, *args, **kwargs):
