@@ -10,8 +10,8 @@ apyhgnc
     :alt: Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.
     :target: https://www.repostatus.org/#wip
 
-.. image:: https://travis-ci.com/travis/robertopreste/apyhgnc.svg?branch=master
-        :target: https://travis-ci.com/robertopreste/apyhgnc
+.. image:: https://travis-ci.com/robertopreste/apyhgnc.svg?branch=master
+    :target: https://travis-ci.com/robertopreste/apyhgnc
 
 .. image:: https://circleci.com/gh/robertopreste/apyhgnc.svg?style=svg
         :target: https://circleci.com/gh/robertopreste/apyhgnc
