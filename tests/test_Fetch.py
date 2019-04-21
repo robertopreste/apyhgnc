@@ -33,8 +33,8 @@ class TestFetch:
              "uniprot_ids": ["P17036"], "ucsc_id": "uc031syk.2",
              "rgd_id": ["RGD:6489147"], "gene_group_id": [28],
              "location_sortable": "07q22.1",
-             "uuid": "2dc6516a-a605-4dce-b4ff-759a7287c680",
-             "_version_": 1631126555665104900}]}
+             "uuid": "2e1f2c0e-2a51-49c6-ae43-9c642f3f72d1",
+             "_version_": 1631389725564600326}]}
         result = self.f.response
 
         assert result == expect
@@ -69,8 +69,8 @@ class TestFetch:
              "uniprot_ids": ["P17036"], "ucsc_id": "uc031syk.2",
              "rgd_id": ["RGD:6489147"], "gene_group_id": [28],
              "location_sortable": "07q22.1",
-             "uuid": "2dc6516a-a605-4dce-b4ff-759a7287c680",
-             "_version_": 1631126555665104900}
+             "uuid": "2e1f2c0e-2a51-49c6-ae43-9c642f3f72d1",
+             "_version_": 1631389725564600326}
         ])
         result = self.f.frame()
 
@@ -99,8 +99,8 @@ class TestFetch:
              "uniprot_ids": ["P17036"], "ucsc_id": "uc031syk.2",
              "rgd_id": ["RGD:6489147"], "gene_group_id": [28],
              "location_sortable": "07q22.1",
-             "uuid": "2dc6516a-a605-4dce-b4ff-759a7287c680",
-             "_version_": 1631126555665104900}
+             "uuid": "2e1f2c0e-2a51-49c6-ae43-9c642f3f72d1",
+             "_version_": 1631389725564600326}
         ]).transpose()
         result = self.f.trans()
 
