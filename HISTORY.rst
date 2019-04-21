@@ -18,7 +18,7 @@ History
 
 * Refactor code and fix tests.
 
-0.1.3 (2019.04.21)
+0.1.3 (2019-04-21)
 ==================
 
 * Update tests;
