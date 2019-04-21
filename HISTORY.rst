@@ -14,6 +14,13 @@ History
 * Add tests for Info, Search and Fetch.
 
 0.1.2 (2019-04-19)
-------------------
+==================
 
 * Refactor code and fix tests.
+
+0.1.3 (2019.04.21)
+==================
+
+* Update tests;
+* Fix importing issue;
+* Update requirements.
