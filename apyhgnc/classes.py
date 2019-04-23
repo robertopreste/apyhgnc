@@ -14,7 +14,7 @@ class Server:
     Basic server class used to call HGNC using sync or async calls.
 
     :param str host: url for the desired HGNC REST service
-    (default: http://rest.genenames.org)
+        (default: http://rest.genenames.org)
     """
     _BASE_URL = "http://rest.genenames.org/"
 
@@ -27,6 +27,7 @@ class Server:
 
         Make a sync call to HGNC's REST service and return a json
         dictionary.
+
         :return: Dict[str, Any]
         """
         resp = requests.get(self._url,
@@ -101,14 +102,15 @@ class Info:
         self._stored = None
         self._modified = None
         self._numdoc = None
-        self._response = self.get_sync()
+        self._response = self._get_sync()
 
-    def get_sync(self) -> Dict[str, Any]:
+    def _get_sync(self) -> Dict[str, Any]:
         """Synchronous call to HGNC.
 
         Make a sync call to HGNC's REST service and return a json
         dictionary.
-        :return: Dict[str, Any]
+
+        :return: Dict[str,Any]
         """
         resp = requests.get(self._url,
                             headers={"Accept": "application/json"})
@@ -118,6 +120,7 @@ class Info:
     def url(self) -> str:
         """
         Return the URL used to retrieve results.
+
         :return: str
         """
         return self._url
@@ -125,9 +128,9 @@ class Info:
     @property
     def response(self) -> Dict[str, Any]:
         """
-        Return the raw response produced by the info call
-        (overrides Server.response).
-        :return: Dict[str, Any]
+        Return the raw response produced by the info call.
+
+        :return: Dict[str,Any]
         """
         return self._response
 
@@ -135,6 +138,7 @@ class Info:
     def searchableFields(self) -> List[str]:
         """
         Return the list of available searchable fields from HGNC.
+
         :return: List[str]
         """
         if self._searchable is None:
@@ -145,6 +149,7 @@ class Info:
     def storedFields(self) -> List[str]:
         """
         Return the list of available stored fields from HGNC.
+
         :return: List[str]
         """
         if self._stored is None:
@@ -153,12 +158,23 @@ class Info:
 
     @property
     def lastModified(self):
+        """
+        Return the date and time when the HGNC server was last modified.
+        TODO
+        :return:
+        """
         if self._modified is None:
             self._modified = self.response.get("lastModified", "")
         return self._modified
 
     @property
     def numDoc(self):
+        """
+        Return the number of entries currently present in the HGNC
+        server.
+        TODO
+        :return:
+        """
         if self._numdoc is None:
             self._numdoc = self.response.get("numDoc", 0)
         return self._numdoc
@@ -170,6 +186,14 @@ class Info:
 class Search(Server):
     """
     Class used to look for entries of interest on HGNC.
+
+    :param args: either a single term to search all available fields,
+        or a specific field and term to restrich the search
+
+    :param kwargs: one or more keywork arguments with a field and a
+        string or list of strings representing the search term(s)
+
+    Example::
 
     >>> Search("BRAF")  # search all searchable fields
     >>> Search("symbol", "BRAF")  # restrict search to symbol field
@@ -208,6 +232,12 @@ class Search(Server):
 class Fetch(Server):
     """
     Class used to look for specific entries on HGNC.
+
+    :param str field: HGNC field to query
+
+    :param Union[str,int] term: query term
+
+    Example::
 
     >>> Fetch("symbol", "ZNF3")
     """

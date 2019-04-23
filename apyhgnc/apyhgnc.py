@@ -10,6 +10,7 @@ from .classes import Info, Search, Fetch
 def info() -> Info:
     """
     Retrieve basic information from HGNC.
+
     :return: Info
     """
     i = Info()
@@ -54,7 +55,7 @@ def fetch(field: str, term: Union[str, int]) -> pd.DataFrame:
 
     :param str field: HGNC field to query
 
-    :param Union[str, int] term: query term
+    :param Union[str,int] term: query term
 
     :return: pd.DataFrame
     """
@@ -68,7 +69,7 @@ async def afetch(field: str, term: Union[str, int]) -> pd.DataFrame:
 
     :param str field: HGNC field to query
 
-    :param Union[str, int] term: query term
+    :param Union[str,int] term: query term
 
     :return: pd.DataFrame
     """

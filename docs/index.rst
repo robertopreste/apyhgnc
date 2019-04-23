@@ -10,6 +10,7 @@ apyhgnc is a Python package that provides a synchronous interface to HGNC_.
    readme
    installation
    usage
+   api
    modules
    contributing
    authors
