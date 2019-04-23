@@ -47,22 +47,42 @@ class Server:
     def url(self) -> str:
         """
         Return the URL used to retrieve results.
+
         :return: str
         """
         return self._url
 
     @staticmethod
-    def _to_frame(response):
+    def _to_frame(response: Dict[str, Any]) -> pd.DataFrame:
+        """
+        Convert the given sync or async response to a DataFrame.
+
+        :param Dict[str, Any] response: input response to convert
+
+        :return: pd.DataFrame
+        """
         return pd.DataFrame.from_records(response.get("docs"))
 
-    def query(self):
+    def query(self) -> pd.DataFrame:
+        """
+        Perform a synchronous query on HGNC.
+
+        :return: pd.DataFrame
+        """
         resp = self._get_sync()
         response = resp.get("response", {"numFound": 0, "docs": []})
+
         return self._to_frame(response)
 
-    async def aquery(self):
+    async def aquery(self) -> pd.DataFrame:
+        """
+        Perform an asynchronous query on HGNC.
+
+        :return: pd.DataFrame
+        """
         resp = await self._get_async()
         response = resp.get("response", {"numFound": 0, "docs": []})
+
         return self._to_frame(response)
 
 
