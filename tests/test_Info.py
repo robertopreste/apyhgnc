@@ -47,9 +47,8 @@ class TestInfo:
 
         assert result == expect
 
-    def test_header(self):
-        # QTime might be different, so I'm only testing the keys
-        expect = {"status": 0, "QTime": 1}.keys()
-        result = self.i.header.keys()
+    def test_repr(self):
+        expect = "HGNC Info results"
+        result = repr(self.i)
 
         assert result == expect
