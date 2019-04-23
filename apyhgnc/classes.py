@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 # Created by Roberto Preste
+import asyncio
+import aiohttp
 import requests
 import urllib.parse
 import pandas as pd
@@ -19,6 +21,66 @@ class Server:
     def __init__(self,
                  host: str = _BASE_URL):
         self._url = host
+
+    def _get_sync(self) -> Dict[str, Any]:
+        """Synchronous call to HGNC.
+
+        Make a sync call to HGNC's REST service and return a json
+        dictionary.
+        :return: Dict[str, Any]
+        """
+        resp = requests.get(self._url,
+                            headers={"Accept": "application/json"})
+        return resp.json()
+
+    async def _get_async(self):
+        """Asynchronous call to HGNC.
+
+        :return:
+        """
+        async with aiohttp.ClientSession() as session:
+            async with session.get(self._url,
+                                   headers={"Accept": "application/json"}) as resp:
+                return await resp.json()
+
+    @property
+    def url(self) -> str:
+        """
+        Return the URL used to retrieve results.
+        :return: str
+        """
+        return self._url
+
+    @staticmethod
+    def _to_frame(response):
+        return pd.DataFrame.from_records(response.get("docs"))
+
+    def query(self):
+        resp = self._get_sync()
+        response = resp.get("response", {"numFound": 0, "docs": []})
+        return self._to_frame(response)
+
+    async def aquery(self):
+        resp = await self._get_async()
+        response = resp.get("response", {"numFound": 0, "docs": []})
+        return self._to_frame(response)
+
+
+class Info:
+    """
+    Class used to retrieve information from HGNC.
+
+    >>> i = Info()
+    >>> i.searchableFields  # list of searchable fields
+    >>> i.storedFields      # list of stored fields
+    """
+
+    def __init__(self) -> None:
+        self._url = "http://rest.genenames.org/info"
+        self._searchable = None
+        self._stored = None
+        self._modified = None
+        self._numdoc = None
         self._response = self.get_sync()
 
     def get_sync(self) -> Dict[str, Any]:
@@ -39,40 +101,6 @@ class Server:
         :return: str
         """
         return self._url
-
-    @property
-    def header(self) -> Dict[str, Any]:
-        """
-        Return the response header produced by the call.
-        :return: Dict[str, Any]
-        """
-        return self._response.get("responseHeader", {"status": 0})
-
-    @property
-    def response(self) -> Dict[str, Any]:
-        """
-        Return the response content produced by the call.
-        :return: Dict[str, Any]
-        """
-        return self._response.get("response", {"numFound": 0, "docs": []})
-
-
-class Info(Server):
-    """
-    Class used to retrieve information from HGNC.
-
-    >>> i = Info()
-    >>> i.searchableFields  # list of searchable fields
-    >>> i.storedFields      # list of stored fields
-    """
-
-    def __init__(self) -> None:
-        self._url = self._BASE_URL + "info"
-        super().__init__(self._url)
-        self._searchable = None
-        self._stored = None
-        self._modified = None
-        self._numdoc = None
 
     @property
     def response(self) -> Dict[str, Any]:
@@ -151,32 +179,10 @@ class Search(Server):
                 q.append("{}:{}".format(key, term))
             self._url += "+AND+".join(q)
         super().__init__(self._url)
-
-    def frame(self) -> pd.DataFrame:
-        """
-        Return a pandas dataframe with the retrieved results.
-        :return: pd.DataFrame
-        """
-        return pd.DataFrame.from_records(self.response.get("docs"))
-
-    def trans(self) -> pd.DataFrame:
-        """
-        Return a simpler view of the dataframe by calling its transpose.
-        :return: pd.DataFrame
-        """
-        return self.frame().T
-
-    def __getitem__(self, item):
-        return self.frame().get(item, "{} not found".format(item))
-
-    def __getattr__(self, item):
-        return self.frame().get(item, "{} not found".format(item))
-
-    def __len__(self) -> int:
-        return self.response.get("numFound", 0)
+        # self._response = self.get_sync()
 
     def __repr__(self):
-        return "HGNC Search results ({} entries found).".format(self.__len__())
+        return "HGNC Search results"
 
 
 class Fetch(Server):
@@ -195,28 +201,112 @@ class Fetch(Server):
         self._url += "{}/{}".format(field, term)
         super().__init__(self._url)
 
-    def frame(self) -> pd.DataFrame:
-        """
-        Return a pandas dataframe with the retrieved results.
-        :return: pd.DataFrame
-        """
-        return pd.DataFrame.from_records(self.response.get("docs"))
-
-    def trans(self) -> pd.DataFrame:
-        """
-        Return a simpler view of the dataframe by calling its transpose.
-        :return: pd.DataFrame
-        """
-        return self.frame().T
-
-    def __getitem__(self, item):
-        return self.frame().get(item, "{} not found".format(item))
-
-    def __getattr__(self, item):
-        return self.frame().get(item, "{} not found".format(item))
-
-    def __len__(self) -> int:
-        return self.response.get("numFound", 0)
-
     def __repr__(self):
-        return "HGNC Fetch results ({} entries found).".format(self.__len__())
+        return "HGNC Fetch results"
+
+    # @staticmethod
+    # def _to_frame(response):
+    #     return pd.DataFrame.from_records(response.get("docs"))
+    #
+    # def query(self):
+    #     resp = self.get_sync()
+    #     response = resp.get("response", {"numFound": 0, "docs": []})
+    #     return self._to_frame(response)
+    #
+    # async def aquery(self):
+    #     resp = await self.get_async()
+    #     response = resp.get("response", {"numFound": 0, "docs": []})
+    #     return self._to_frame(response)
+
+
+
+    # def frame(self) -> pd.DataFrame:
+    #     """
+    #     Return a pandas dataframe with the retrieved results.
+    #     :return: pd.DataFrame
+    #     """
+    #     return pd.DataFrame.from_records(self.response.get("docs"))
+    #
+    # def trans(self) -> pd.DataFrame:
+    #     """
+    #     Return a simpler view of the dataframe by calling its transpose.
+    #     :return: pd.DataFrame
+    #     """
+    #     return self.frame().T
+    #
+    # def __getitem__(self, item):
+    #     return self.frame().get(item, "{} not found".format(item))
+    #
+    # def __getattr__(self, item):
+    #     return self.frame().get(item, "{} not found".format(item))
+    #
+    # def __len__(self) -> int:
+    #     return self.response.get("numFound", 0)
+    #
+    # def __repr__(self):
+    #     return "HGNC Fetch results ({} entries found).".format(self.__len__())
+
+
+# class AFetch(Server):
+#     """
+#     Class used to look for specific entries on HGNC using async calls.
+#     """
+#
+#     def __init__(self,
+#                  field: str,
+#                  term: Union[str, int]) -> None:
+#         self._url = self._BASE_URL + "fetch/"
+#         field = urllib.parse.quote_plus(field)
+#         term = urllib.parse.quote_plus(term)
+#         self._url += "{}/{}".format(field, term)
+#         super().__init__(self._url)
+#
+#     @property
+#     async def _response(self):
+#         """
+#         Return the raw response produced by the async call.
+#         :return:
+#         """
+#         return await self.get_async()
+#
+#     @property
+#     async def header(self) -> Dict[str, Any]:
+#         """
+#         Return the response header produced by the call.
+#         :return: Dict[str, Any]
+#         """
+#         return await self._response.get("responseHeader", {"status": 0})
+#
+#     @property
+#     async def response(self) -> Dict[str, Any]:
+#         """
+#         Return the response content produced by the call.
+#         :return: Dict[str, Any]
+#         """
+#         return await self._response.get("response", {"numFound": 0, "docs": []})
+#
+#     async def frame(self) -> pd.DataFrame:
+#         """
+#         Return a pandas dataframe with the retrieved results.
+#         :return: pd.DataFrame
+#         """
+#         return await pd.DataFrame.from_records(self.response.get("docs"))
+#
+#     async def trans(self) -> pd.DataFrame:
+#         """
+#         Return a simpler view of the dataframe by calling its transpose.
+#         :return: pd.DataFrame
+#         """
+#         return await self.frame().T
+
+    # def __getitem__(self, item):
+    #     return self.frame().get(item, "{} not found".format(item))
+    #
+    # def __getattr__(self, item):
+    #     return self.frame().get(item, "{} not found".format(item))
+    #
+    # def __len__(self) -> int:
+    #     return self.response.get("numFound", 0)
+    #
+    # def __repr__(self):
+    #     return "HGNC Fetch results ({} entries found).".format(self.__len__())
