@@ -24,3 +24,11 @@ History
 * Update tests;
 * Fix importing issue;
 * Update requirements.
+
+0.2.0 (2019-04-24)
+------------------
+
+* Setup proper async calls (``afetch`` and ``asearch``);
+* Update tests;
+* Fix documentation.
+
