@@ -101,9 +101,11 @@ class TestSearchKeywords:
 
     def test_url(self):
         expect = "http://rest.genenames.org/search/symbol:BRAF+AND+status:Approved"
+        # python 3.5 has random order of arguments
+        expect2 = "http://rest.genenames.org/search/status:Approved+AND+symbol:BRAF"
         result = self.s.url
 
-        assert result == expect
+        assert result == expect or result == expect2
 
     def test_repr(self):
         expect = "HGNC Search results"
