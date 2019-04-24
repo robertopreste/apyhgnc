@@ -10,15 +10,10 @@ from apyhgnc.classes import Search
 class TestSearchAll:
     s = Search("BRAF")
 
-    def test_query(self):
-        expect = pd.DataFrame({
-            "hgnc_id": ["HGNC:1097", "HGNC:43877", "HGNC:18615", "HGNC:379"],
-            "score": [10.320703, 4.528981, 4.528981, 1.290088],
-            "symbol": ["BRAF", "BANCR", "BRAFP1", "AKAP9"]
-        })
+    def test_query(self, df_search_all_braf):
         result = self.s.query()
 
-        assert_frame_equal(result, expect)
+        assert_frame_equal(result, df_search_all_braf)
 
     def test_url(self):
         expect = "http://rest.genenames.org/search/BRAF"
@@ -36,15 +31,10 @@ class TestSearchAll:
 class TestSearchSymbol:
     s = Search("symbol", "BRAF")
 
-    def test_query(self):
-        expect = pd.DataFrame({
-            "hgnc_id": ["HGNC:1097"],
-            "score": [10.972663],
-            "symbol": ["BRAF"]
-        })
+    def test_query(self, df_search_symbol_braf):
         result = self.s.query()
 
-        assert_frame_equal(result, expect)
+        assert_frame_equal(result, df_search_symbol_braf)
 
     def test_url(self):
         expect = "http://rest.genenames.org/search/symbol/BRAF"
@@ -62,15 +52,10 @@ class TestSearchSymbol:
 class TestSearchKeyword:
     s = Search(symbol="BRAF")
 
-    def test_query(self):
-        expect = pd.DataFrame({
-            "hgnc_id": ["HGNC:1097"],
-            "score": [10.972663],
-            "symbol": ["BRAF"]
-        })
+    def test_query(self, df_search_symbol_braf):
         result = self.s.query()
 
-        assert_frame_equal(result, expect)
+        assert_frame_equal(result, df_search_symbol_braf)
 
     def test_url(self):
         expect = "http://rest.genenames.org/search/symbol:BRAF"
@@ -88,15 +73,10 @@ class TestSearchKeyword:
 class TestSearchKeywordOR:
     s = Search(symbol=["BRAF", "ZNF3"])
 
-    def test_query(self):
-        expect = pd.DataFrame({
-            "hgnc_id": ["HGNC:13089", "HGNC:1097"],
-            "score": [5.1589246, 0.12897311],
-            "symbol": ["ZNF3", "BRAF"]
-        })
+    def test_query(self, df_search_symbols_braf_znf3):
         result = self.s.query()
 
-        assert_frame_equal(result, expect)
+        assert_frame_equal(result, df_search_symbols_braf_znf3)
 
     def test_url(self):
         expect = "http://rest.genenames.org/search/symbol:BRAF+OR+ZNF3"
@@ -114,15 +94,10 @@ class TestSearchKeywordOR:
 class TestSearchKeywords:
     s = Search(symbol="BRAF", status="Approved")
 
-    def test_query(self):
-        expect = pd.DataFrame({
-            "hgnc_id": ["HGNC:1097"],
-            "score": [11.020766],
-            "symbol": ["BRAF"]
-        })
+    def test_query(self, df_search_symbol_and_status):
         result = self.s.query()
 
-        assert_frame_equal(result, expect)
+        assert_frame_equal(result, df_search_symbol_and_status)
 
     def test_url(self):
         expect = "http://rest.genenames.org/search/symbol:BRAF+AND+status:Approved"

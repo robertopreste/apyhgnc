@@ -7,6 +7,28 @@ from pandas.testing import assert_frame_equal
 from apyhgnc import apyhgnc
 
 
+# apyhgnc.info
+
+def test_info_searchableFields(searchable_fields):
+    result = apyhgnc.info().searchableFields
+    assert result == searchable_fields
+
+
+def test_info_storedFields(stored_fields):
+    result = apyhgnc.info().storedFields
+    assert result == stored_fields
+
+
+def test_info_url():
+    result = apyhgnc.info().url
+    assert result == "http://rest.genenames.org/info"
+
+
+def test_info_numDoc():
+    result = apyhgnc.info().numDoc
+    assert result == 42865
+
+
 # apyhgnc.fetch
 
 def test_fetch_symbol_znf3(df_fetch_symbol_znf3):

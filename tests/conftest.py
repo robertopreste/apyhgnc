@@ -3,6 +3,40 @@
 # Created by Roberto Preste
 import pytest
 import pandas as pd
+from typing import List
+
+
+@pytest.fixture
+def searchable_fields() -> List[str]:
+    fields = ["vega_id", "locus_group", "alias_symbol",
+              "rna_central_id", "prev_name", "refseq_accession",
+              "hgnc_id", "entrez_id", "symbol", "name", "mgd_id",
+              "prev_symbol", "alias_name", "status", "locus_type",
+              "rgd_id", "ensembl_gene_id", "omim_id", "ucsc_id",
+              "uniprot_ids", "ena", "ccds_id", "gene_group_id",
+              "location_sortable"]
+    return fields
+
+
+@pytest.fixture
+def stored_fields() -> List[str]:
+    fields = ["vega_id", "locus_group", "alias_symbol", "_version_",
+              "uuid", "rna_central_id", "prev_name",
+              "refseq_accession", "mirbase", "lsdb", "homeodb",
+              "hgnc_id", "cosmic", "entrez_id", "symbol",
+              "location", "name", "mgd_id", "snornabase",
+              "prev_symbol", "bioparadigms_slc", "orphanet",
+              "alias_name", "date_approved_reserved", "status",
+              "pseudogene.org", "merops", "horde_id", "locus_type",
+              "imgt", "iuphar", "rgd_id", "kznf_gene_catalog",
+              "ensembl_gene_id", "gtrnadb", "mamit-trnadb",
+              "gene_group", "omim_id", "date_name_changed", "cd",
+              "date_modified", "lncipedia", "ucsc_id", "lncrnadb",
+              "enzyme_id", "uniprot_ids",
+              "intermediate_filament_db", "ena", "ccds_id",
+              "pubmed_id", "date_symbol_changed", "gene_group_id",
+              "location_sortable"]
+    return fields
 
 
 @pytest.fixture
@@ -34,8 +68,8 @@ def df_fetch_symbol_znf3() -> pd.DataFrame:
              "uniprot_ids": ["P17036"], "ucsc_id": "uc031syk.2",
              "rgd_id": ["RGD:6489147"], "gene_group_id": [28],
              "location_sortable": "07q22.1",
-             "uuid": "c84ec9e7-3f1d-4e1f-8f88-012287adc19a",
-             "_version_": 1631575494687195138}
+             "uuid": "fe919e33-ad54-436f-9c3b-06dbc3fd0bf5",
+             "_version_": 1631664295862337544}
         ])
     return df
 
