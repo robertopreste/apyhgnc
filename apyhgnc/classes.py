@@ -9,7 +9,7 @@ import pandas as pd
 from typing import Dict, Any, Union, List
 
 
-class Server:
+class _Server:
     """
     Basic server class used to call HGNC using sync or async calls.
 
@@ -94,6 +94,8 @@ class Info:
     >>> i = Info()
     >>> i.searchableFields  # list of searchable fields
     >>> i.storedFields      # list of stored fields
+    >>> i.lastModified      # date of last HGNC database modification
+    >>> i.numDoc            # number of entries in HGNC database
     """
 
     def __init__(self) -> None:
@@ -157,23 +159,23 @@ class Info:
         return self._stored
 
     @property
-    def lastModified(self):
+    def lastModified(self) -> str:
         """
         Return the date and time when the HGNC server was last modified.
-        TODO
-        :return:
+
+        :return: str
         """
         if self._modified is None:
             self._modified = self.response.get("lastModified", "")
         return self._modified
 
     @property
-    def numDoc(self):
+    def numDoc(self) -> int:
         """
         Return the number of entries currently present in the HGNC
         server.
-        TODO
-        :return:
+
+        :return: int
         """
         if self._numdoc is None:
             self._numdoc = self.response.get("numDoc", 0)
@@ -183,7 +185,7 @@ class Info:
         return "HGNC Info results"
 
 
-class Search(Server):
+class Search(_Server):
     """
     Class used to look for entries of interest on HGNC.
 
@@ -195,11 +197,11 @@ class Search(Server):
 
     Example::
 
-    >>> Search("BRAF")  # search all searchable fields
-    >>> Search("symbol", "BRAF")  # restrict search to symbol field
-    >>> Search(symbol="BRAF")  # search with a keyword argument
-    >>> Search(symbol=["BRAF", "ZNF"])  # search with OR
-    >>> Search(symbol="BRAF", status="Approved")  # search multiple keywords
+    >>> Search("BRAF")              # search all searchable fields
+    >>> Search("symbol", "BRAF")    # restrict search to symbol field
+    >>> Search(symbol="BRAF")       # search with a keyword argument
+    >>> Search(symbol=["BRAF", "ZNF"])              # search with OR
+    >>> Search(symbol="BRAF", status="Approved")    # search multiple keywords
     """
 
     def __init__(self, *args, **kwargs):
@@ -229,7 +231,7 @@ class Search(Server):
         return "HGNC Search results"
 
 
-class Fetch(Server):
+class Fetch(_Server):
     """
     Class used to look for specific entries on HGNC.
 
