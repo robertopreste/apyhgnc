@@ -32,3 +32,9 @@ History
 * Update tests;
 * Fix documentation.
 
+0.2.1 (2019-04-29)
+==================
+
+* Update tests to use latest HGNC data;
+* Add script to automatically create test data.
+
