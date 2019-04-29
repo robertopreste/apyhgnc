@@ -25,7 +25,7 @@ class TestInfo:
         assert result == expect
 
     def test_numDoc(self):
-        expect = 42865
+        expect = 42930
         result = self.i.numDoc
 
         assert result == expect
