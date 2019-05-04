@@ -38,3 +38,7 @@ History
 * Update tests to use latest HGNC data;
 * Add script to automatically create test data.
 
+0.2.2 (2019-05-04)
+==================
+
+* Update tests to use latest HGNC data.
