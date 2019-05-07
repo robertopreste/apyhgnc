@@ -26,7 +26,7 @@ def test_info_url():
 
 def test_info_numDoc():
     result = apyhgnc.info().numDoc
-    assert result == 42930
+    assert result == 42969
 
 
 # apyhgnc.fetch
