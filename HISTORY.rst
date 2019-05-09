@@ -42,3 +42,9 @@ History
 ==================
 
 * Update tests to use latest HGNC data.
+
+0.2.3 (WIP)
+===========
+
+* Update documentation;
+* Update testfiles.
