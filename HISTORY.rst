@@ -43,8 +43,13 @@ History
 
 * Update tests to use latest HGNC data.
 
-0.2.3 (WIP)
-===========
+0.2.3 (2019-05-08)
+==================
 
 * Update documentation;
 * Update testfiles.
+
+0.2.4 (2019-05-09)
+==================
+
+Update testfiles and requirements.
