@@ -52,4 +52,10 @@ History
 0.2.4 (2019-05-09)
 ==================
 
-Update testfiles and requirements.
+* Update testfiles and requirements.
+
+0.2.5 (2019-05-11)
+==================
+
+* Update tests;
+* Better requirements handling.
