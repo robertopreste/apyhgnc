@@ -24,12 +24,6 @@ class TestInfo:
 
         assert result == expect
 
-    def test_numDoc(self):
-        expect = 43054
-        result = self.i.numDoc
-
-        assert result == expect
-
     def test_repr(self):
         expect = "HGNC Info results"
         result = repr(self.i)

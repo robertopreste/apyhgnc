@@ -24,11 +24,6 @@ def test_info_url():
     assert result == "http://rest.genenames.org/info"
 
 
-def test_info_numDoc():
-    result = apyhgnc.info().numDoc
-    assert result == 43054
-
-
 # apyhgnc.fetch
 
 def test_fetch_symbol_znf3(df_fetch_symbol_znf3):
