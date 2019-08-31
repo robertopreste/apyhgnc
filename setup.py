@@ -9,8 +9,8 @@ with open("README.rst") as readme_file:
 with open("HISTORY.rst") as history_file:
     history = history_file.read()
 
-requirements = ["requests>=2.21", "pandas>=0.24", "asyncio>=3.4",
-                "aiohttp>=3.5"]
+requirements = ["requests>=2.21", "pandas>=0.24.2", "asyncio>=3.4.3",
+                "aiohttp>=3.5.4"]
 
 setup_requirements = ["pytest-runner", ]
 
@@ -42,6 +42,6 @@ setup(  # pragma: no cover
     test_suite="tests",
     tests_require=test_requirements,
     url="https://github.com/robertopreste/apyhgnc",
-    version='0.2.5',
+    version='0.2.6',
     zip_safe=False,
 )

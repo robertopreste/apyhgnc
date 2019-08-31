@@ -15,7 +15,7 @@ def create_fetch_symbol_znf3() -> bool:
     """
     df = apy.fetch("symbol", "ZNF3")
     df.to_pickle(os.path.join(DATADIR, "fetch_symbol_ZNF3.pkl"))
-    return True
+    return 
 
 
 def create_search_all_braf() -> bool:
@@ -25,37 +25,29 @@ def create_search_all_braf() -> bool:
     """
     df = apy.search("BRAF")
     df.to_pickle(os.path.join(DATADIR, "search_all_BRAF.pkl"))
-    return True
+    return 
 
 
 def create_search_symbol_braf() -> bool:
-    """Create and store Search results for symbol = BRAF.
-
-    :return: bool
-    """
+    """Create and store Search results for symbol = BRAF."""
     df = apy.search("symbol", "BRAF")
     df.to_pickle(os.path.join(DATADIR, "search_symbol_BRAF.pkl"))
-    return True
+    return 
 
 
 def create_search_symbols_braf_znf3() -> bool:
-    """Create and store Search results for symbol = ["BRAF", "ZNF3"].
-
-    :return: bool
-    """
+    """Create and store Search results for symbol = ["BRAF", "ZNF3"]."""
     df = apy.search(symbol=["BRAF", "ZNF3"])
     df.to_pickle(os.path.join(DATADIR, "search_symbols_BRAF_ZNF3.pkl"))
-    return True
+    return 
 
 
 def create_search_symbol_and_status() -> bool:
-    """Create and store Search results for symbol = "BRAF" AND status = "Approved".
-
-    :return: bool
-    """
+    """Create and store Search results for symbol = "BRAF" 
+    AND status = "Approved"."""
     df = apy.search(symbol="BRAF", status="Approved")
     df.to_pickle(os.path.join(DATADIR, "search_symbol_and_status.pkl"))
-    return True
+    return 
 
 
 def main():
