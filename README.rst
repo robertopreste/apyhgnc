@@ -55,19 +55,12 @@ Features
 This Python package allows to retrieve entries from HGNC_ using 
 synchronous or asynchronous calls.
 
-* Return searchable fields and stored fields separately using the 
-``info()`` function (or the lower-level ``Info`` class).
-* Return all entries of interest limiting results only to hgnc_id, symbol 
-and score fields using the ``search()`` function for synchronous calls or 
-the ``asearch()`` function for asynchronous calls (or the lower-level 
-``Search`` class).
-* Return entries according to the given searchable fields, returning all 
-the available stored fields using the ``fetch()`` function for synchronous 
-calls or the ``afetch()`` function for asynchronous calls (or the 
-lower-level ``Fetch`` class).
+* Return searchable fields and stored fields separately using the ``info()`` function (or the lower-level ``Info`` class). 
+* Return all entries of interest limiting results only to hgnc_id, symbol and score fields using the ``search()`` function for synchronous calls or the ``asearch()`` function for asynchronous calls (or the lower-level ``Search`` class). 
+* Return entries according to the given searchable fields, returning all the available stored fields using the ``fetch()`` function for synchronous calls or the ``afetch()`` function for asynchronous calls (or the lower-level ``Fetch`` class). 
 
 Please refer to the Usage_ section of the documentation for further 
-information.
+information. 
 
 Installation
 ============
