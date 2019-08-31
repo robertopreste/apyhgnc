@@ -45,10 +45,10 @@ def stored_fields() -> List[str]:
 
 @pytest.fixture
 def df_fetch_symbol_znf3() -> pd.DataFrame:
-    """
-    Return a dataframe with fetch results for symbol = ZNF3.
+    """Return a dataframe with fetch results for symbol = ZNF3.
 
-    :return: pd.DataFrame
+    Returns: 
+        pd.DataFrame
     """
     df = pd.read_pickle(os.path.join(DATADIR, "fetch_symbol_ZNF3.pkl"))
     return df
@@ -56,10 +56,10 @@ def df_fetch_symbol_znf3() -> pd.DataFrame:
 
 @pytest.fixture
 def df_search_all_braf() -> pd.DataFrame:
-    """
-    Return a dataframe with search results for BRAF (all fields).
+    """Return a dataframe with search results for BRAF (all fields).
 
-    :return: pd.DataFrame
+    Returns: 
+        pd.DataFrame
     """
     df = pd.read_pickle(os.path.join(DATADIR, "search_all_BRAF.pkl"))
     return df
@@ -67,10 +67,10 @@ def df_search_all_braf() -> pd.DataFrame:
 
 @pytest.fixture
 def df_search_symbol_braf() -> pd.DataFrame:
-    """
-    Return a dataframe with search results for symbol = BRAF.
+    """Return a dataframe with search results for symbol = BRAF.
 
-    :return: pd.DataFrame
+    Returns: 
+        pd.DataFrame
     """
     df = pd.read_pickle(os.path.join(DATADIR, "search_symbol_BRAF.pkl"))
     return df
@@ -78,10 +78,10 @@ def df_search_symbol_braf() -> pd.DataFrame:
 
 @pytest.fixture
 def df_search_symbols_braf_znf3() -> pd.DataFrame:
-    """
-    Return a dataframe with search results for symbol = ["BRAF", "ZNF3"].
+    """Return a dataframe with search results for symbol = ["BRAF", "ZNF3"].
 
-    :return: pd.DataFrame
+    Returns: 
+        pd.DataFrame
     """
     df = pd.read_pickle(os.path.join(DATADIR, "search_symbols_BRAF_ZNF3.pkl"))
     return df
@@ -89,11 +89,11 @@ def df_search_symbols_braf_znf3() -> pd.DataFrame:
 
 @pytest.fixture
 def df_search_symbol_and_status() -> pd.DataFrame:
-    """
-    Return a dataframe with search results for symbol = "BRAF"
+    """Return a dataframe with search results for symbol = "BRAF" 
     AND status = "Approved".
 
-    :return: pd.DataFrame
+    Returns: 
+        pd.DataFrame
     """
     df = pd.read_pickle(os.path.join(DATADIR, "search_symbol_and_status.pkl"))
     return df
