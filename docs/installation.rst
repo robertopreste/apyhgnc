@@ -5,7 +5,7 @@ Installation
 **PLEASE NOTE: apyhgnc only supports Python 3!**
 
 Stable release
---------------
+==============
 
 To install apyhgnc, run this command in your terminal:
 
@@ -13,7 +13,8 @@ To install apyhgnc, run this command in your terminal:
 
     $ pip install apyhgnc
 
-This is the preferred method to install apyhgnc, as it will always install the most recent stable release.
+This is the preferred method to install apyhgnc, as it will always install 
+the most recent stable release.
 
 If you don't have `pip`_ installed, this `Python installation guide`_ can guide
 you through the process.
@@ -23,7 +24,7 @@ you through the process.
 
 
 From sources
-------------
+============
 
 The sources for apyhgnc can be downloaded from the `Github repo`_.
 

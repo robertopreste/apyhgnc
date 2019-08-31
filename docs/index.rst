@@ -1,7 +1,9 @@
-Welcome to apyhgnc's documentation!
-======================================
+.. include:: ../README.rst
 
-apyhgnc is a Python package that provides a synchronous interface to HGNC_.
+____ 
+
+Table Of Contents
+=================
 
 .. toctree::
    :maxdepth: 2
@@ -11,7 +13,6 @@ apyhgnc is a Python package that provides a synchronous interface to HGNC_.
    installation
    usage
    api
-   modules
    contributing
    authors
    history
